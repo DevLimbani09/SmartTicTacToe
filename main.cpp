@@ -23,6 +23,7 @@ int main()
   while (state)
   {
     playerMove(player);
+    playerMove(computer);
     // opponentMove(computer);
   }
 }

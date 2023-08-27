@@ -29,6 +29,6 @@ void playerMove(char);
 bool isPlayerValid(char);
 bool isMoveValid(int, int);
 void opponentMove(char);
-bool checkWin();
+bool hasWon();
 
 // #endif

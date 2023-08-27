@@ -75,6 +75,11 @@ char findOpponent(char player)
 
 void calculateMove(int &r, int &c, char r_move, int c_move)
 {
+  if (r_move >= 'a' && r_move <= 'z')
+  {
+    r_move -= 32;
+  }
+
   r = toInt(r_move);
   c = c_move - 1;
 }
@@ -107,4 +112,46 @@ bool isPlayerValid(char player)
 bool isMoveValid(int r, int c)
 {
   return ((r >= 0 && r < 3) && (c >= 0 && c < 3));
+}
+
+bool hasWon()
+{
+  // check rows
+  for (int row = 0; row < ROWS; row++)
+  {
+    if (board[row][0] == board[row][1] == board[row][2] && board[row][0] != ' ')
+    {
+      printBoard();
+      cout << board[row][0] << " wins." << endl;
+      return true;
+    }
+  }
+
+  // check cols
+  for (int col = 0; col < ROWS; col++)
+  {
+    if (board[col][0] == board[col][1] == board[col][2] && board[col][0] != ' ')
+    {
+      printBoard();
+      cout << board[col][0] << " wins." << endl;
+      return true;
+    }
+  }
+
+  // check diag
+  if (board[0][0] == board[1][1] == board[2][2] && board[0][0] != ' ')
+  {
+    printBoard();
+    cout << board[0][0] << " wins." << endl;
+    return true;
+  }
+
+  if (board[0][2] == board[1][1] == board[2][0] && board[2][0] != ' ')
+  {
+    printBoard();
+    cout << board[0][2] << " wins." << endl;
+    return true;
+  }
+
+  return false;
 }
