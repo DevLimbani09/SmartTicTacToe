@@ -1,5 +1,14 @@
 {
     "files.associations": {
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "ostream": "cpp"
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "d:\\Code\\CPP\\SmartTicTacToe",
+            "binaryPath": "d:\\Code\\CPP\\SmartTicTacToe\\main",
+            "binaryArgs": []
+        }
+    ],
+    "makefile.makePath": "mingw32-make"
 }

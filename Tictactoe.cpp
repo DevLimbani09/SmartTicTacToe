@@ -116,42 +116,80 @@ bool isMoveValid(int r, int c)
 
 bool hasWon()
 {
-  // check rows
+  // check rows (w/ random debug line)
   for (int row = 0; row < ROWS; row++)
   {
-    if (board[row][0] == board[row][1] == board[row][2] && board[row][0] != ' ')
+    // cout << "checking rows" << endl;
+    if ((board[row][0] == PLAYER_1) || (board[row][0] == PLAYER_2))
     {
-      printBoard();
-      cout << board[row][0] << " wins." << endl;
-      return true;
+      // cout << "found a player" << endl;
+      if ((board[row][0] == board[row][1]) && (board[row][0] == board[row][2]))
+      {
+        // cout << "FOUND WIN!!!!!!" << endl;
+        cout << "-------------------";
+        printBoard();
+        cout << board[row][0] << " wins." << endl;
+        cout << "-------------------" << endl;
+
+        exit(0);
+
+        return true;
+      }
     }
   }
 
   // check cols
-  for (int col = 0; col < ROWS; col++)
+  for (int col = 0; col < COLS; col++)
   {
-    if (board[col][0] == board[col][1] == board[col][2] && board[col][0] != ' ')
+    // cout << "checking cols" << endl;
+
+    if ((board[0][col] == PLAYER_1) || (board[0][col] == PLAYER_2))
     {
-      printBoard();
-      cout << board[col][0] << " wins." << endl;
-      return true;
+      if ((board[0][col] == board[1][col]) && (board[0][col] == board[2][col]))
+      {
+        cout << "-------------------";
+        printBoard();
+        cout << board[0][col] << " wins." << endl;
+        cout << "-------------------" << endl;
+
+        exit(0);
+
+        return true;
+      }
     }
   }
 
   // check diag
-  if (board[0][0] == board[1][1] == board[2][2] && board[0][0] != ' ')
+  // cout << "checking diag1" << endl;
+  if ((board[0][0] == PLAYER_1) || (board[0][0] == PLAYER_2))
   {
-    printBoard();
-    cout << board[0][0] << " wins." << endl;
-    return true;
+    if ((board[0][0] == board[1][1]) && (board[0][0] == board[2][2]))
+    {
+      cout << "-------------------";
+      printBoard();
+      cout << board[0][0] << " wins." << endl;
+      cout << "-------------------" << endl;
+
+      exit(0);
+
+      return true;
+    }
   }
 
-  if (board[0][2] == board[1][1] == board[2][0] && board[2][0] != ' ')
+  // cout << "checking diag2" << endl;
+  if (board[2][0] == PLAYER_1 || board[2][0] == PLAYER_2)
   {
-    printBoard();
-    cout << board[0][2] << " wins." << endl;
-    return true;
-  }
+    if ((board[0][2] == board[1][1]) && (board[0][2] == board[2][0]))
+    {
+      cout << "-------------------";
+      printBoard();
+      cout << board[0][2] << " wins." << endl;
+      cout << "-------------------" << endl;
 
+      exit(0);
+
+      return true;
+    }
+  }
   return false;
 }

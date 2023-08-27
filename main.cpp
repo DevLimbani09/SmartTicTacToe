@@ -18,12 +18,14 @@ int main()
   // get computer
   char computer = findOpponent(player);
 
-  bool state = true;
+  bool state = false;
 
-  while (state)
+  while (!state)
   {
     playerMove(player);
+    state = hasWon();
     playerMove(computer);
+    state = hasWon();
     // opponentMove(computer);
   }
 }
