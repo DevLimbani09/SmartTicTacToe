@@ -7,6 +7,8 @@
 int main()
 {
 
+  srand(time(0));
+
   // get player
   char player;
   while (!isPlayerValid(player))
@@ -20,26 +22,31 @@ int main()
 
   bool state = false;
 
-  if (player == PLAYER_1)
+  // main game loop
+  while (!isFull())
   {
-    while (!state)
+
+    if (player == PLAYER_1)
     {
-      playerMove(player);
-      state = hasWon();
-      playerMove(opponent);
-      state = hasWon();
-      // opponentMove(opponent);
+      while (!state)
+      {
+        playerMove(player);
+        state = hasWon();
+        // playerMove(opponent);
+        computerMove(opponent);
+        state = hasWon();
+      }
     }
-  }
-  else
-  {
-    while (!state)
+    else
     {
-      playerMove(opponent);
-      state = hasWon();
-      playerMove(player);
-      state = hasWon();
-      // opponentMove(opponent);
+      while (!state)
+      {
+        // playerMove(opponent);
+        computerMove(opponent);
+        state = hasWon();
+        playerMove(player);
+        state = hasWon();
+      }
     }
   }
 }

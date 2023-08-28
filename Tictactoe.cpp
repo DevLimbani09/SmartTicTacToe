@@ -10,9 +10,26 @@ char board[ROWS][COLS] = {{' ', ' ', ' '},
 
 int occupied[3][3] = {0};
 
-char toAlpha(int n) { return 'A' + n; }
+//{row, col}
+int previousMoves[NUM_OF_PRE_MOVES][2] = {
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+    {0, 0},
+};
 
-int toInt(char c) { return c - 'A'; }
+int numOfCompMoves = 0;
+
+char toAlpha(int n)
+{
+  return 'A' + n;
+}
+
+int toInt(char c)
+{
+  return c - 'A';
+}
 
 void printBoard()
 {
@@ -192,4 +209,63 @@ bool hasWon()
     }
   }
   return false;
+}
+
+void computerMove(char computer)
+{
+
+  // if first move
+  if (previousMoves[numOfCompMoves][0] == 0)
+  {
+    int firstMoveRow = rand() % 3;
+    int firstMoveCol = rand() % 3;
+
+    printBoard();
+
+    if (!setPosition(firstMoveRow, firstMoveCol, computer))
+    {
+      computerMove(computer);
+    }
+
+    ++numOfCompMoves;
+  }
+  else
+  {
+    int nextRow, nextCol;
+    int preMoveRow = previousMoves[numOfCompMoves][0];
+    int preMoveCol = previousMoves[numOfCompMoves][1];
+
+    printBoard();
+
+    for (int i = 0; i < 4; i++)
+    {
+      nextRow = preMoveRow + (-1 + rand() % 3);
+      nextCol = preMoveCol + (-1 + rand() % 3);
+
+      if (!setPosition(nextRow, nextCol, computer))
+      {
+        computerMove(computer);
+      }
+      else
+      {
+        break;
+      }
+    }
+  }
+}
+
+bool isFull()
+{
+  for (int i = 0; i < ROWS; i++)
+  {
+    for (int j = 0; j < COLS; j++)
+    {
+      if (occupied[i][j] == 0)
+      {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
