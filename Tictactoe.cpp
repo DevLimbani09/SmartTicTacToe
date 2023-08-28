@@ -92,7 +92,7 @@ void playerMove(char player)
 
   printBoard();
 
-  cout << "Enter your move: ";
+  cout << "Enter your move (" << player << "): ";
   cin >> r_move;
   cin >> c_move;
   calculateMove(move_row, move_col, r_move, c_move);

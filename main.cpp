@@ -15,17 +15,31 @@ int main()
     cin >> player;
   }
 
-  // get computer
-  char computer = findOpponent(player);
+  // get opponent
+  char opponent = findOpponent(player);
 
   bool state = false;
 
-  while (!state)
+  if (player == PLAYER_1)
   {
-    playerMove(player);
-    state = hasWon();
-    playerMove(computer);
-    state = hasWon();
-    // opponentMove(computer);
+    while (!state)
+    {
+      playerMove(player);
+      state = hasWon();
+      playerMove(opponent);
+      state = hasWon();
+      // opponentMove(opponent);
+    }
+  }
+  else
+  {
+    while (!state)
+    {
+      playerMove(opponent);
+      state = hasWon();
+      playerMove(player);
+      state = hasWon();
+      // opponentMove(opponent);
+    }
   }
 }
